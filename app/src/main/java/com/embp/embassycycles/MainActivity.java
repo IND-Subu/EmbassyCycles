@@ -10,18 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // webView = findViewById(R.id.webView);
-        // WebSettings webSettings = webView.getSettings();
-        // webSettings.setJavaScriptEnabled(true);
-        // webSettings.setDatabaseEnabled(true);
-        // webSettings.setDomStorageEnabled(true);
-        // Set a WebViewClient to handle page navigation
-        // webView.setWebViewClient(new WebViewClient());
     }
 
     public void scanQRCode(android.view.View view) {
@@ -38,16 +30,23 @@ public class MainActivity extends AppCompatActivity {
             String qrCodeData = result.getContents();
             String customUrl = "https://frand.000webhostapp.com/ecycle";
             if (qrCodeData != null) {
-                // Load the custom URL in a new activity
-                Intent webViewIntent = new Intent(this, WebViewActivity.class);
-                webViewIntent.putExtra("url", customUrl);
-                startActivity(webViewIntent);
-            } else {
-                Toast.makeText(this, "QR code data is empty", Toast.LENGTH_SHORT).show();
+                if (validateQRCodeData(qrCodeData)) {
+                    // Load the custom URL in a new activity
+                    Intent webViewIntent = new Intent(this, WebViewActivity.class);
+                    webViewIntent.putExtra("url", customUrl);
+                    startActivity(webViewIntent);
+                } else {
+                    // Prompt the user to scan again
+                    Toast.makeText(this, "Invalid QR code. Please scan again.", Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+    // Define your custom validation condition
+    private boolean validateQRCodeData(String qrCodeData) {
+        return qrCodeData != null && qrCodeData.startsWith("embp.cycle.id");
     }
 }
 
