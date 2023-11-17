@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             String qrCodeData = result.getContents();
-            String customUrl = "https://frand.000webhostapp.com/ecycle";
+            String customUrl = "https://embp.000webhostapp.com";
             if (qrCodeData != null) {
                 if (validateQRCodeData(qrCodeData)) {
                     // Load the custom URL in a new activity
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // Define your custom validation condition
     private boolean validateQRCodeData(String qrCodeData) {
-        return qrCodeData != null && qrCodeData.startsWith("embp.cycle.id");
+        return qrCodeData != null && qrCodeData.startsWith("https://embp.000webhostapp.com");
     }
 }
 
