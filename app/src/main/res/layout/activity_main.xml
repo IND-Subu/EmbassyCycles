@@ -1,51 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
+    android:background="#F9FBE7"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context="com.embp.embassycycles.MainActivity">
 
-    <ImageView
-        android:id="@+id/embassyLogo"
-        android:layout_width="303dp"
-        android:layout_height="252dp"
-        android:background="@drawable/logo"
-        android:contentDescription="embassyLogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+    <!-- ConstraintLayout as the root -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="295dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="63dp"
-        android:text="One App to check out and check in Embassy cycle services"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="26sp"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/embassyLogo" />
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#FFFF00"
+            app:subtitleTextColor="#304FFE"
+            app:titleTextColor="@android:color/background_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
-        android:id="@+id/scanButton"
+        <!-- Your existing content -->
+
+        <ImageView
+            android:id="@+id/embassyLogo"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_launcher"
+            android:contentDescription="@string/embassyLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <LinearLayout
+            android:id="@+id/showStatusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/scanButton"
+            app:layout_constraintTop_toBottomOf="@+id/embassyLogo"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/checkMark"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_width="39dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:background="@mipmap/check_mark_round"
+                android:contentDescription="@string/checkmark" />
+
+            <TextView
+                android:id="@+id/appDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColor="#22bb33"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/scanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@color/design_default_color_primary_variant"
+            android:onClick="scanQRCode"
+            android:padding="10dp"
+            android:text="@string/scan_to_proceed"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/scanButton"
+            app:layout_constraintStart_toStartOf="@+id/scanButton" />
+
+        <ImageView
+            android:id="@+id/warningSign"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/attention_sign"
+            android:contentDescription="@string/warning"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/showStatusText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/embassyLogo"
+            app:layout_constraintVertical_bias="0.529" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- NavigationView for drawer content -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:backgroundTint="#5783db"
-        android:onClick="scanQRCode"
-        android:padding="10dp"
-        android:text="@string/scan_to_procced"
-        app:iconTint="#5783db"
-        android:textColor="#FFFFFF"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_layout" /> <!-- You need to create drawer_menu.xml for your menu items -->
+
+</androidx.drawerlayout.widget.DrawerLayout>

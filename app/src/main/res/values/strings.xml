@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Embassy Cycles</string>
-    <string name="scan_to_procced">Scan to Procced</string>
+    <string name="embassyLogo">Embassy Logo</string>
+    <string name="app_desc">One App to check out and check in Embassy cycle services</string>
+    <string name="scan_to_proceed">scan to proceed</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="empName">Name: </string>
+    <string name="emp_id">Emp Id: </string>
+    <string name="block">Block: </string>
+    <string name="company">Company: </string>
+    <string name="status">STATUS: </string>
+    <string name="already_checkedIn_alert">You haven\'t checked in last time. Please check in then proceed to Check Out</string>
+    <string name="warning">WARNING</string>
+    <string name="checkmark">CHECKMARK</string>
 </resources>

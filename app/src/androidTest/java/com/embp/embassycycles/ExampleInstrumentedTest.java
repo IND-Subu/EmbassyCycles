@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.embp.embassycycles", appContext.getPackageName());
+        assertEquals("com.embp.com.subrata.embassycycles", appContext.getPackageName());
     }
 }

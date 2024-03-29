@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:menuCategory="system"
+        android:id="@+id/group_divider">
+        <item
+            android:title="@string/app_name"
+            android:id="@+id/item1" />
+    </group>
+</menu>
